@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <!-- 使用数据 {{}} 插值语法-->
+    {{str}}
+    <p >{{num1}}  {{str}}</p>
+    <p >{{str}}</p>
+    <p >num1和num2中较大的数是:{{num1 > num2 ? num1 : num2}}</p>
+    <p >str的反转是:{{str.split('').reverse().join("")}}</p>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",  // 指定绑定的盒子，表示这个盒子内部数据豆油这个Vue对象管理
+        data: {
+            num1: 200, // 定义变量
+            str: "hello",
+            num2: 40
+        }
+    })
+</script>
+
+
+</body>
+
+</html>

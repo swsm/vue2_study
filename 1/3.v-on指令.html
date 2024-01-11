@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <!-- v-xxx vue提供的一些指令，一般作为标签属性出现
+      v-on: 让标签绑上一个事件  可以简写为 @
+     -->
+    <p>{{num1}}</p>
+    <p><button v-on:click="num1++">按钮1</button></p>
+    <p><button v-on:click="add">按钮2</button></p>
+    <p><button @click="add">按钮3</button></p>
+    <p><button @click="add2(100)">按钮4</button></p>
+    
+</div>
+
+<script>
+    new Vue({
+        el: "#app",  // 指定绑定的盒子，表示这个盒子内部数据豆油这个Vue对象管理
+        data: {
+            num1: 200
+        },
+        methods: {
+            add: function() {
+                this.num1 += 10
+            },
+            add2: function(a) {
+                this.num1 += a
+            }
+        }
+    })
+</script>
+
+
+</body>
+
+</html>
