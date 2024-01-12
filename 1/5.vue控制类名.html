@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    
+    <style>
+        p {
+            width: 100px;
+            height: 100px;
+            background-color: bisque;
+        }
+        .active {
+            color: red;
+        }
+        .current {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <!-- :class的值 可以是一个对象，键名就是类名，值是一个布尔值，决定有没有这个类 -->
+    <p :class="{active:bool1, current:bool2}">文字1</p>
+    <!-- :class的值 可以是一个数组，值就是类名，表示有这个类，记得加上引号 -->
+    <p :class="['current', 'active']">文字2</p>
+    <!-- :class的值 可以是一个三元运算符，决定某个条件下有或没有这个类 -->
+    <p :class="bool3?'active':''">文字3</p>
+    <p :class="num>20?'active':''">文字4</p>
+    <p :class="[bool4?'active':'', num>20?'current':'']">文字5</p>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",  // 指定绑定的盒子，表示这个盒子内部数据豆油这个Vue对象管理
+        data: {
+            bool1: false,
+            bool2: true,
+            bool3: false,
+            bool4: true,
+            num: 20
+        },
+        methods: {
+            add: function() {
+                this.num1 += 10
+            },
+            add2: function(a) {
+                this.num1 += a
+            }
+        }
+    })
+</script>
+
+
+</body>
+
+</html>

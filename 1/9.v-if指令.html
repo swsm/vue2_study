@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <!--    v-if 的值为false，这个节点会被浏览器删除，涉及到dom的操作-->
+    <p v-if="bool1">第1个P标签</p>
+    <p style="display: none">第2个P标签</p>
+    <hr>
+    <p v-if="bool2">第3个P标签</p>
+    <p v-else>第4个P标签</p>
+    <hr>
+    <p v-if="type==='a'">第5个标签</p>
+    <p v-else-if="type==='b'">第6个标签</p>
+    <p v-else>第7个标签</p>
+    <hr>
+    <!--    v-show 的值为false，这个节点依然在浏览器，只是样式为隐藏-->
+    <p v-show="bool3">第8个标签</p>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",  // 指定绑定的盒子，表示这个盒子内部数据豆油这个Vue对象管理
+        data: {
+            bool1: true,
+            bool2: true,
+            type: 'b',
+            bool3: false
+        }
+    })
+</script>
+
+
+</body>
+
+</html>
