@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <!-- 调用一个my-header组件  -->
+    <my-header></my-header>
+    <my-header></my-header>
+</div>
+
+
+<template id="tmp1">
+    <h1>这是h1标签</h1>
+</template>
+
+<script>
+    
+    // 注意事项：
+    // 1.定义组件的时候，组件名可以书写-的格式，也可以书写驼峰式
+    // 2.调用组件的时候，只能书写-的格式
+    // 3.组件只能在绑定了Vue对象的标签内部使用，外部不能使用
+    // 4.template里面只能有一个根标签
+    Vue.component("my-header", {
+        template: '#tmp1'
+    })
+    
+    new Vue({
+        el: "#app",  // 指定绑定的盒子，表示这个盒子内部数据豆油这个Vue对象管理
+        data: {
+            price: 100
+        }
+    })
+</script>
+
+
+</body>
+
+</html>

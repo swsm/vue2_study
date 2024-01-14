@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <!-- 调用计算属性，不需要加小括号 -->
+    <p>总价为:{{total}}</p>
+</div>
+
+<script>
+    let vm = new Vue({
+        el: "#app",  // 指定绑定的盒子，表示这个盒子内部数据豆油这个Vue对象管理
+        data: {
+            arr : [
+                {name:'vue1', price:39, count:3},
+                {name:'vue2', price:49, count:1},
+                {name:'vue3', price:59, count:5}
+            ]
+        },
+        computed: {
+            total:{
+                get() {
+                    // 在模板中第1次获取{{total}}这个计算属性的值的时候执行这里的代码1次
+                    console.log("执行了get方法")
+                    let total = this.arr.reduce((pre, current) => {
+                        return pre + current.price * current.count
+                    }, 0)
+                    return total
+                },
+                set(newVal) {
+                    // 计算属性受别的数据修改影响了这个值
+                    console.log("执行了set方法:", newVal)
+                }
+            }
+        }
+    })
+    
+    vm.total = 11   // 修改触发了set，并且把新的值传到set的形参newVal中了
+</script>
+
+
+</body>
+
+</html>

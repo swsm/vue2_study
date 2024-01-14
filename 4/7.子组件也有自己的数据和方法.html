@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <child></child>
+</div>
+
+
+<template id="tmp1">
+    <div>
+        <h1>{{num}}</h1>
+        <button @click="add">按钮</button>
+    </div>
+    
+</template>
+
+<script>
+    
+    // 子组件
+    let child = {
+        template: '#tmp1',
+        data() {
+            return {
+                num: 20
+            }
+        },
+        methods: {
+            add() {
+                this.num++ 
+            }
+        }
+    }
+    
+    // 父组件
+    new Vue({
+        el: "#app",  // 指定绑定的盒子，表示这个盒子内部数据豆油这个Vue对象管理
+        components: {
+            child
+        }
+    })
+</script>
+
+
+</body>
+
+</html>

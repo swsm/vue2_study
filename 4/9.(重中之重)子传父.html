@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <h1>{{fatherNum}}</h1>
+    <!-- 2.在父组件中调用子组件的的时候，通过自定义事件的格式，事件函数就是父组件的函数-->
+    <child :num="fatherNum" @fn="chanFatherNum"></child>
+</div>
+
+
+<template id="tmp1">
+    <div>
+        <!-- 在子组件内部直接使用num这个标签属性 -->
+        <h1>{{num}}</h1>
+        <button @click="hdClick">按钮</button>
+    </div>
+    
+</template>
+
+<script>
+    
+    // 子组件
+    let child = {
+        template: '#tmp1',
+        // 子组件中声明这个标签属性，用来接收父组件的数据
+        props: ["num"],
+        methods: {
+            hdClick() {
+                // 单向数据流，没有办法直接修改到父组件的数据
+                // 在Vue中提供了一个专门触发自定义事件的函数 $emit()
+                // this.$emit('自定义事件', 参数)
+                // 3.在子组件中通过this.$emit()来触发自定义事件，从而执行父组件的函数
+                this.$emit('fn')
+            }
+        }
+    }
+    
+    // 父组件
+    new Vue({
+        el: "#app",  // 指定绑定的盒子，表示这个盒子内部数据豆油这个Vue对象管理
+        data: {
+            fatherNum: 21
+        },
+        components: {
+            child
+        },
+        methods: {
+            // 1.在父组件中提供一个修改父组件数据的方法
+            chanFatherNum() {
+                this.fatherNum++
+            }
+        }
+    })
+    
+    // 什么时候会用到子传父？修改父组件数据的时候
+</script>
+
+
+</body>
+
+</html>

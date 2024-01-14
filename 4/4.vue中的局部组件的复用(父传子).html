@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <!-- 2.通过标签属性title 把值传到组件的内部  -->
+    <my-header  :title="tit1"></my-header>
+    <my-header  :title="tit2"></my-header>
+</div>
+
+
+<template id="tmp1">
+    <!-- 3.在组件内部直接使用这个标签属性 -->
+    <h1>{{title}}</h1>
+</template>
+
+<script>
+    
+    // 注意事项：
+    
+    new Vue({
+        el: "#app",  // 指定绑定的盒子，表示这个盒子内部数据豆油这个Vue对象管理
+        data: {
+            tit1: "购物车",
+            tit2: "订单栏"
+        },
+        components: {
+            "my-header": {
+                template: '#tmp1',
+                // 1.声明myHeader这个组件有一个标签属性title
+                props: ["title"]
+            }
+        }
+    })
+</script>
+
+
+</body>
+
+</html>

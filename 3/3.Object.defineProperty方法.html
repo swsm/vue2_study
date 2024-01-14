@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+
+<script>
+    let obj = {
+        age: 7
+    }
+    // 可以用来给对象设置属性
+    Object.defineProperty(obj, "name", {
+        value: 'Vue',
+        writable: true,
+        configurable: true,
+        enumerable: true
+    })
+    
+    console.log(obj);
+    obj.name = 'Vue3'
+    console.log(obj);
+    
+    // delete obj.name
+    // console.log(obj)
+    
+    for (key in obj) {
+        console.log(key)
+    }
+    
+</script>
+
+
+</body>
+
+</html>

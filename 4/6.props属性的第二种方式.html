@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <my-header  :title="tit1"></my-header>
+    <my-header ></my-header>
+</div>
+
+
+<template id="tmp1">
+    <div>
+        <h1>{{title}}</h1>
+        <p>内容</p>
+    </div>
+    
+</template>
+
+<script>
+    
+    // 子组件
+    let myHeader = {
+        template: '#tmp1',
+        props: {
+            title: {
+                // 没有传递title的时候，默认值是default对应的这个值
+                default: "默认值",
+                // 期望接收的数据类型为String
+                type: String
+            }
+        }
+    }
+    
+    // 父组件
+    new Vue({
+        el: "#app",  // 指定绑定的盒子，表示这个盒子内部数据豆油这个Vue对象管理
+        data: {
+            tit1: "购物车",
+            tit2: "订单栏"
+        },
+        components: {
+            myHeader
+        }
+    })
+</script>
+
+
+</body>
+
+</html>

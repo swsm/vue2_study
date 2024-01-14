@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+
+<script>
+    let obj = {
+    }
+    let val = 'Vue';
+    // 可以用来给对象设置属性
+    Object.defineProperty(obj, "name", {
+        get() {
+            // 获取name属性的时候执行 
+            console.log("执行了get")
+            return val
+        },
+        set(newVal) {
+            // newVal接收 等号 后面的值
+            console.log("执行了set方法", newVal)
+            val = newVal
+        }
+    })
+    console.log(obj.name)
+    obj.name = 'Vue3'
+    console.log(obj.name)
+    
+</script>
+
+
+</body>
+
+</html>
