@@ -1,0 +1,65 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+<!--  3  <child v-slot:btn="obj">-->
+    <child>
+        <!-- 1-->
+        <button slot="btn" slot-scope="obj">按钮{{obj.mynum}}, {{obj.haha}}</button>
+        <!-- 2-->
+<!--        <template slot="btn" slot-scope="obj">-->
+<!--            <button>-->
+<!--                按钮{{obj.mynum}}, {{obj.haha}}-->
+<!--            </button>-->
+<!--        </template>-->
+        <!--3 -->
+<!--        <button>按钮{{obj.msg}}</button>-->
+        <!-- 4 -->
+        <template v-slot:btn="obj">
+            <button>
+                按钮{{obj.mynum}}, {{obj.haha}}
+            </button>
+        </template>
+    </child>
+</div>
+
+<template id="tem1">
+    <div>
+        <h1>这是子组件标题</h1>
+        <slot name="btn" :mynum="num" haha="haha"></slot>
+    </div>
+</template>
+
+<script>
+    let child = {
+        template: '#tem1',
+        data() {
+            return {
+                num: 20,
+            }
+        }
+    }
+
+    // 父组件
+    new Vue({
+        el: "#app",  // 指定绑定的盒子，表示这个盒子内部数据豆油这个Vue对象管理
+        data: {
+        },
+        components: {
+            child
+        },
+        methods: {
+        }
+    })
+
+</script>
+
+
+</body>
+
+</html>

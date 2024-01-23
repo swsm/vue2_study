@@ -1,0 +1,55 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+<!-- 
+ 1. slot标签上加上name属性，相当于给插槽起名字，称为具名插槽
+ 2. 在a标签和button标签身上加上slot的值为某个slot的name属性，相当于在点名，表示把这个标签插入到对应的slot的位置上
+
+-->
+<div id="app">
+    <child>
+        <!-- slot-scope专门收集所在标签(button)对应的slot身上的标签属性，作为自己的属性 -->
+        <button slot="btn" slot-scope="obj">按钮{{obj.mynum}}, {{obj.haha}}</button>
+    </child>
+</div>
+
+<template id="tem1">
+    <div>
+        <h1>这是子组件标题{{num}}</h1>
+        <slot name="btn" :mynum="num" haha="haha"></slot>
+    </div>
+</template>
+
+<script>
+    let child = {
+        template: '#tem1',
+        data() {
+            return {
+                num: 20,
+            }
+        }
+    }
+
+    // 父组件
+    new Vue({
+        el: "#app",  // 指定绑定的盒子，表示这个盒子内部数据豆油这个Vue对象管理
+        data: {
+        },
+        components: {
+            child
+        },
+        methods: {
+        }
+    })
+
+</script>
+
+
+</body>
+
+</html>

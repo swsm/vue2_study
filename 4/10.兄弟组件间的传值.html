@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <child1></child1>
+    <child2></child2>
+</div>
+
+
+<template id="tmp1">
+    <button :style="{backgroundColor:bgc}">按钮1</button>
+</template>
+<template id="tmp2">
+    <button @click="hdClick2">按钮2</button>
+</template>
+<script>
+    /**
+     * 兄弟组件的传值 
+     * 1.先子传父 再父传子 (不推荐)
+     * 2.中央事件总线(空的Vue对象)
+     * 3.Vuex状态管理(不是今天的内容)
+     * 
+     * 中央事件总线：
+     *   1. 创建一个空的Vue对象用来监听和触发自定义事件
+     *   2. 在需要被修改的组件中开启自定义事件监听 
+     *   3. 触发第2步中的自定义事件
+     */
+    // 1.创建一个空的Vue对象用来监听和触发自定义事件
+    let bus = new Vue();
+    // 子组件
+    let child1 = {
+        template: '#tmp1',
+        data() {
+            return {
+                bgc: "red"
+            }
+        },
+        created() {
+            // 生命周期函数之一
+            // 2.什么时候执行？ 组件刚被创建的时候，现在记成，页面一刷新就执行
+            bus.$on("changeBgc", val=>{
+                this.bgc = val
+            })
+        }
+    }
+    let child2 = {
+        template: '#tmp2',
+        methods: {
+            hdClick2: function() {
+                // 修改按钮组件1的bgc数据
+                // 3. 触发第2步中的自定义事件
+                bus.$emit("changeBgc", "skyblue")
+            }
+        }
+    }
+    
+    // 父组件
+    new Vue({
+        el: "#app",  // 指定绑定的盒子，表示这个盒子内部数据豆油这个Vue对象管理
+        data: {
+        },
+        components: {
+            child1, child2
+        },
+        methods: {
+        }
+    })
+    
+</script>
+
+
+</body>
+
+</html>

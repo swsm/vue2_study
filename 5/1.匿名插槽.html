@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+<!-- 
+ 1. 默认情况下，浏览器不渲染子组件标签中 内部的标签(a 和 button这种)
+ 2. 如果想要在子组件中展示a和button这种，需要在子组件中定义slot标签来接收
+ 3. slot出现的位置，就是a和button这种标签出现的位置
+ 4. slot标签上没有name属性，我们就称为匿名插槽
+
+-->
+<div id="app">
+    <child>
+        <a href="#">这是一个链接</a>
+        <button>这是一个按钮</button>
+    </child>
+</div>
+
+<template id="tem1">
+    <div>
+        <h1>这是子组件标题</h1>
+        <slot></slot>
+    </div>
+</template>
+
+<script>
+    let child = {
+        template: '#tem1'
+    }
+
+    // 父组件
+    new Vue({
+        el: "#app",  // 指定绑定的盒子，表示这个盒子内部数据豆油这个Vue对象管理
+        data: {
+        },
+        components: {
+            child
+        },
+        methods: {
+        }
+    })
+
+</script>
+
+
+</body>
+
+</html>
